@@ -25,15 +25,3 @@ jobs:
     - name: Push
       run: |
         docker image push docker.io/${{ secrets.DOCKER_USERNAME }}/agebox
-  test-container:
-    needs: buildx
-    runs-on: ubuntu-latest
-    container:
-      image: docker.io/${{ secrets.DOCKER_USERNAME }}/agebox:latest
-    steps:
-    - name: Check python version
-      run: python --version
-    - name: Check ansible version
-      run: ansible --version
-    - name: Check ansible-galexy version
-      run: ansible-galexy --version
