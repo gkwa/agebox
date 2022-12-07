@@ -17,6 +17,12 @@ jobs:
       run: |
         docker build . -f Dockerfile -t agebox:latest
         docker build . -f Dockerfile -t docker.io/${{ secrets.DOCKER_USERNAME }}/agebox
+  push-image:
+    needs: buildx
+    runs-on: ubuntu-latest
+    container:
+      image: agebox:latest
+    steps:
     - name: Login to dockerhub
       uses: docker/login-action@v2
       with:
@@ -25,7 +31,7 @@ jobs:
     - name: Push
       run: |
         docker image push docker.io/${{ secrets.DOCKER_USERNAME }}/agebox
-  container-test-job:
+  test-container:
     needs: buildx
     runs-on: ubuntu-latest
     container:
