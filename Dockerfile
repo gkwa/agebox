@@ -31,6 +31,7 @@ RUN version=$(curl -s https://api.github.com/repos/gopasspw/gopass/releases/late
     rm -rf /tmp/gopass*
 
 RUN python --version; \
+    gpg --version; \
     ansible --version; \
     ansible-galaxy --version
 
