@@ -26,6 +26,7 @@ jobs:
       run: |
         docker image push docker.io/${{ secrets.DOCKER_USERNAME }}/agebox
   container-test-job:
+    needs: buildx
     runs-on: ubuntu-latest
     container:
       image: agebox:latest
