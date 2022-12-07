@@ -23,4 +23,4 @@ RUN pip3 install --upgrade pip; \
 
 RUN python --version; \
     ansible --version; \
-    ansbiel-galexy --version
+    ansible-galexy --version
