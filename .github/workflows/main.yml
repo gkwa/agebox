@@ -16,6 +16,11 @@ jobs:
     - name: Build
       run: |
         docker build . -f Dockerfile -t docker.io/${{ secrets.DOCKER_USERNAME }}/agebox
+    - name: test
+      run: |
+        docker run --entrypoint python -ti docker.io/${{ secrets.DOCKER_USERNAME }}/agebox --version
+        docker run --entrypoint ansible -ti docker.io/${{ secrets.DOCKER_USERNAME }}/agebox --version
+        docker run --entrypoint ansible-galexy -ti docker.io/${{ secrets.DOCKER_USERNAME }}/agebox --version
     - name: Login to dockerhub
       uses: docker/login-action@v2
       with:
