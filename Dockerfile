@@ -20,3 +20,7 @@ RUN pip3 install --upgrade pip; \
     python3 -m pip install ansible; \
     ansible-galaxy collection install azure.azcollection; \
     pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+
+RUN python --version; \
+    ansible --version; \
+    ansbiel-galexy --version
