@@ -24,8 +24,9 @@ RUN pip3 install --upgrade pip; \
 RUN version=$(curl -s https://api.github.com/repos/gopasspw/gopass/releases/latest | grep -Po '"tag_name": "\K.*?(?=")' | tr -d v) && \
     echo $version && \
     curl -Lo /tmp/gopass-${version}-linux-amd64.tar.gz https://github.com/gopasspw/gopass/releases/download/v${version}/gopass-${version}-linux-amd64.tar.gz && \
-    tar xzf /tmp/gopass-${version}-linux-amd64.tar.gz -C /tmp/ && \
-    install -m 755 /tmp/gopass /usr/local/bin/gopass && \
+    mkdir -p /tmp/gopass-${version}-linux-amd64 && \
+    tar xzf /tmp/gopass-${version}-linux-amd64.tar.gz -C /tmp/gopass-${version}-linux-amd64 && \
+    install -m 755 /tmp/gopass-${version}-linux-amd64/gopass /usr/local/bin/gopass && \
     gopass --version && \
     rm -rf /tmp/gopass*
 
