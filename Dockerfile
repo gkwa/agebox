@@ -21,12 +21,13 @@ RUN pip3 install --upgrade pip; \
     ansible-galaxy collection install azure.azcollection; \
     pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
 
-RUN version=$(curl -s https://api.github.com/repos/gopasspw/gopass/releases/latest | grep -Po '"tag_name": "\K.*?(?=")' | tr -d v); \
-    echo $version; \
-    curl -Lo /tmp/gopass-${version}-linux-amd64.tar.gz https://github.com/gopasspw/gopass/releases/download/v${version}/gopass-${version}-linux-amd64.tar.gz; \
-    tar xzf /tmp/gopass-${version}-linux-amd64.tar.gz -C /tmp/; \
-    install -m 755 /tmp/gopass /usr/local/bin/gopass; \
-    gopass --version
+RUN version=$(curl -s https://api.github.com/repos/gopasspw/gopass/releases/latest | grep -Po '"tag_name": "\K.*?(?=")' | tr -d v) && \
+    echo $version && \
+    curl -Lo /tmp/gopass-${version}-linux-amd64.tar.gz https://github.com/gopasspw/gopass/releases/download/v${version}/gopass-${version}-linux-amd64.tar.gz && \
+    tar xzf /tmp/gopass-${version}-linux-amd64.tar.gz -C /tmp/ && \
+    install -m 755 /tmp/gopass /usr/local/bin/gopass && \
+    gopass --version && \
+    rm -rf /tmp/gopass*
 
 RUN python --version; \
     ansible --version; \
