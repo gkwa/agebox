@@ -25,4 +25,4 @@ RUN python --version; \
     ansible --version; \
     ansible-galaxy --version
 
-ENTRYPOINT["bash"]
+ENTRYPOINT ["bash"]
