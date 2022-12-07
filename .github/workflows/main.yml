@@ -22,5 +22,3 @@ jobs:
         push: true
         platforms: linux/amd64
         tags: ${{ secrets.DOCKER_USERNAME }}/agebox:latest
-        cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/agebox:latest
-        cache-to: type=inline
